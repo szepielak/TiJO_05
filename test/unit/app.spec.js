@@ -83,6 +83,30 @@ describe('app', function () {
                 expect(age).toEqual({name: 'Maria', age: 10, course: 'kids'});
             });
         });
+
+        describe('and.callFake', function () {
+            var age;
+            beforeAll(function () {
+                spyOn(app, 'calculateAge').and.callFake(function (dateString) {
+                    var today = new Date('03/23/2000');
+                    var birthDate = new Date(dateString);
+                    var age = today.getFullYear() - birthDate.getFullYear();
+                    var m = today.getMonth() - birthDate.getMonth();
+                    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+                        age--;
+                    }
+                    return age;
+                });
+            });
+            it('should call calculateAge fake function', function () {
+                age = app.calculateAge('11/10/1999');
+                expect(age).toBe(0);
+            });
+            it('should call assignToSwimmingCourse and calculateAge fake function', function () {
+                age = app.assignToSwimmingCourse('Maria', '11/10/1980');
+                expect(age).toEqual({name: 'Maria', age: 19, course: 'adults'});
+            });
+        });
     });
 });
 
