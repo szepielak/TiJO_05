@@ -32,7 +32,9 @@ describe('app', function () {
     var carPortal;
     describe('CarPortal', function () {
         carPortal = new app.CarPortal();
-
+        afterEach(function () {
+            carPortal.logout();
+        });
         it('should set username to john and password to 12345 when login is call', function () {
             carPortal.login('john', '12345');
             expect(carPortal.credentials).toEqual({username: 'john', password: '12345'});
