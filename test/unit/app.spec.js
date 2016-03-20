@@ -5,9 +5,10 @@ describe('app', function () {
 
     var car;
     describe('Car', function () {
-        describe('property', function () {
+        beforeEach(function () {
             car = new app.Car('Audi', 1998);
-
+        });
+        describe('property', function () {
             it('should defined model', function () {
                 expect(car.model).toBeDefined();
             });
@@ -16,8 +17,6 @@ describe('app', function () {
             });
         });
         describe('value', function () {
-            car = new app.Car('Audi', 1998);
-
             it('should be set to Audi on model property', function () {
                 expect(car.model).toBe('Audi');
             });
