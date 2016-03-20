@@ -107,6 +107,22 @@ describe('app', function () {
                 expect(age).toEqual({name: 'Maria', age: 19, course: 'adults'});
             });
         });
+
+        describe('calls.count()', function () {
+            var age;
+            beforeAll(function () {
+                spyOn(app, 'calculateAge').and.callThrough();
+            });
+            it('should notice that call calculateAge is call', function () {
+                age = app.calculateAge('11/10/1999');
+                expect(app.calculateAge.calls.count()).toBe(1);
+            });
+            it('should notice that calculateAge is call, ' +
+                'when assignToSwimmingCourse is call ', function () {
+                age = app.assignToSwimmingCourse('Maria', '11/10/1980');
+                expect(app.calculateAge.calls.count()).toEqual(2);
+            });
+        });
     });
 });
 
