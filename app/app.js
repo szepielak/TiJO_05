@@ -1,7 +1,12 @@
 (function () {
     'use strict';
 
-    window.app = {}
+    window.app = {
+        Car: function (model, year) {
+            this.model = model;
+            this.year = year;
+        }
+    }
 })();
 
 
