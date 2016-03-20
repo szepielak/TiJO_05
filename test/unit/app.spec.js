@@ -21,6 +21,9 @@ describe('app', function () {
             it('should be set to Audi on model property', function () {
                 expect(car.model).toBe('Audi');
             });
+
+            car = new app.Car('BMW', 2000);
+
             it('should be set to 1998 on year property', function () {
                 expect(car.year).toBe(1998);
             });
