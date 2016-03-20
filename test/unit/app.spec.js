@@ -41,5 +41,20 @@ describe('app', function () {
             });
         });
     });
+
+    describe('calculateAge', function () {
+        describe('toHaveBeenCalled', function () {
+            beforeAll(function () {
+                spyOn(app, 'calculateAge');
+                app.calculateAge('10/10/1991');
+                //app.assignToSwimmingCourse('Jack', '10/10/1991');
+
+            });
+            it('should call calculateAge function', function () {
+                expect(app.calculateAge).toHaveBeenCalled();
+                expect(app.calculateAge).toHaveBeenCalledWith('10/10/1991');
+            });
+        });
+    });
 });
 
