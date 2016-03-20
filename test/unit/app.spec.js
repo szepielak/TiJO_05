@@ -68,6 +68,21 @@ describe('app', function () {
                 expect(app.calculateAge).toHaveBeenCalledWith('11/10/1997');
             });
         });
+
+        describe('and.returnValue', function () {
+            var age;
+            beforeAll(function () {
+                spyOn(app, 'calculateAge').and.returnValue(10);
+            });
+            it('should call calculateAge and return 10', function () {
+                age = app.calculateAge('11/10/2000');
+                expect(age).toBe(10);
+            });
+            it('should call assignToSwimmingCourse and calculateAge should return 10', function () {
+                age = app.assignToSwimmingCourse('Maria', '11/10/1980');
+                expect(age).toEqual({name: 'Maria', age: 10, course: 'kids'});
+            });
+        });
     });
 });
 
