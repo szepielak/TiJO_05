@@ -43,6 +43,7 @@ describe('app', function () {
     });
 
     describe('calculateAge', function () {
+
         describe('toHaveBeenCalled', function () {
             beforeAll(function () {
                 spyOn(app, 'calculateAge');
@@ -53,6 +54,18 @@ describe('app', function () {
             it('should call calculateAge function', function () {
                 expect(app.calculateAge).toHaveBeenCalled();
                 expect(app.calculateAge).toHaveBeenCalledWith('10/10/1991');
+            });
+        });
+
+        describe('and.callThrough', function () {
+            beforeAll(function () {
+                spyOn(app, 'calculateAge').and.callThrough();
+                app.assignToSwimmingCourse('Maria', '11/10/1997');
+            });
+            it('should call calculateAge function function ' +
+                'when assignToSwimmingCourse is call', function () {
+                expect(app.calculateAge).toHaveBeenCalled();
+                expect(app.calculateAge).toHaveBeenCalledWith('11/10/1997');
             });
         });
     });
